@@ -1,16 +1,16 @@
-#' Convert CSV files (from ggsem Shiny app) to ggplot2 output
+#' Convert CSV files (from ggsem Shiny app) to ggplot output
 #' @description
-#' This function converts the four CSV files from the ggsem Shiny app into a ggplot2 output object.
-#' The ggplot2 output can then be modified using standard ggplot2 functions, such as ggtitle() and annotate().
+#' This function converts the four CSV files from the ggsem Shiny app into a ggplot output object.
+#' The ggplot output can then be modified using standard ggplot2 functions, such as ggtitle() and annotate().
 #'
 #' @param points_data
-#' An object that stores the CSV file containing information about points from the ggsem Shiny app. The default is NULL.
+#' An object that stores the CSV file containing information about points from the ggsem shiny app. The default is NULL.
 #' @param lines_data
-#' An object that stores the CSV file containing information about lines from the ggsem Shiny app. The default is NULL.
+#' An object that stores the CSV file containing information about lines from the ggsem shiny app. The default is NULL.
 #' @param annotations_data
-#' An object that stores the CSV file containing information about text annotations from the ggsem Shiny app. The default is NULL.
+#' An object that stores the CSV file containing information about text annotations from the ggsem shiny app. The default is NULL.
 #' @param loops_data
-#' An object that stores the CSV file containing information about self-loop arrows from the ggsem Shiny app. The default is NULL.
+#' An object that stores the CSV file containing information about self-loop arrows from the ggsem shiny app. The default is NULL.
 #' @param element_order
 #' Order of the graphical elements on display. This is the order in which the graphical elements are added. So if it is written later, then it gets added later (more front),
 #' such as: c("lines", "points", "self_loops", "annotations"), which sets annotations to be added last (and hence most front).
@@ -20,6 +20,7 @@
 #' A numeric value for adjusting the horizontal position of the plot. Default is 0.
 #' @param vertical_position
 #' A numeric value for adjusting the vertical position of the plot. Default is 0.
+#' @param n Number of points to be used for interpolation (for gradient lines or curved lines). Default is 100.
 #' @return
 #' A ggplot object is returned as the function's output.
 #' @import ggplot2
@@ -53,7 +54,7 @@
 
 csv_to_ggplot <- function(points_data = NULL, lines_data = NULL, annotations_data = NULL, loops_data = NULL,
                           element_order = c("lines", "points", "self_loops", "annotations"),
-                          zoom_level = 1.2, horizontal_position = 0, vertical_position = 0) {
+                          zoom_level = 1.2, horizontal_position = 0, vertical_position = 0, n = 100) {
 
   # Initialize the ggplot object
 
@@ -76,7 +77,7 @@ csv_to_ggplot <- function(points_data = NULL, lines_data = NULL, annotations_dat
     if (element == "points") {
       p <- draw_points(p, points_data, zoom_level)
     } else if (element == "lines") {
-      p <- draw_lines(p, lines_data, zoom_level)
+      p <- draw_lines(p, lines_data, zoom_level, n = n)
     } else if (element == "annotations") {
       p <- draw_annotations(p, annotations_data, zoom_level)
     } else if (element == "self_loops") {

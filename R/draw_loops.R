@@ -1,11 +1,11 @@
-#' Draw self-loop arrows from a self-loop arrow CSV file (from ggsem Shiny app) on a ggplot2 object
+#' Draw self-loop arrows from a self-loop arrow CSV file (from ggsem Shiny app) on a ggplot object
 #'
 #' @description
-#' This function adds self-loop arrows onto any ggplot2 output (including your own plots not created from the ggsem Shiny app).
+#' This function adds self-loop arrows onto any ggplot output (including your own plots not created from the ggsem shiny app).
 #' @param p
-#' A ggplot2 object
+#' A ggplot object
 #' @param loops_data
-#' An object that stores the CSV file containing information about self-loop arrows from the ggsem Shiny app.
+#' An object that stores the CSV file containing information about self-loop arrows from the ggsem shiny app.
 #' @param zoom_level
 #' A numeric value to control the zoom level of the plot. Default is 1.
 #'
@@ -28,6 +28,8 @@
 #' draw_loops(p, loops_data, zoom_level = 1.2)
 draw_loops <- function(p, loops_data, zoom_level = 1) {
   if (!is.null(loops_data) && nrow(loops_data) > 0) {
+    loops_data$color <- sapply(loops_data$color, valid_hex)
+
     if (nrow(loops_data) > 0) {
       for (i in 1:nrow(loops_data)) {
         # Create the loop path with a gap
@@ -56,7 +58,7 @@ draw_loops <- function(p, loops_data, zoom_level = 1) {
                           x = x_rotated,
                           y = y_rotated,
                           color = loops_data$color[i],
-                          size = loops_data$width[i] / zoom_level,
+                          linewidth = loops_data$width[i] / zoom_level,
                           alpha = loops_data$alpha[i],
                           arrow = arrow_type
         )
@@ -72,7 +74,7 @@ draw_loops <- function(p, loops_data, zoom_level = 1) {
                             x = x_rotated_rev,
                             y = y_rotated_rev,
                             color = loops_data$color[i],
-                            size = loops_data$width[i] / zoom_level,
+                            linewidth = loops_data$width[i] / zoom_level,
                             alpha = loops_data$alpha[i],
                             arrow = arrow_type)
         }
