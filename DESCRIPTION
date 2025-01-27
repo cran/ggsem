@@ -1,7 +1,7 @@
 Package: ggsem
 Type: Package
 Title: Interactively Visualize Structural Equation Modeling Diagrams
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: person(
       given = "Seung Hyun",
       family = "Min",
@@ -21,7 +21,7 @@ URL: https://smin95.github.io/ggsem/
 BugReports: https://github.com/smin95/ggsem/issues/
 Config/Needs/website: rmarkdown
 NeedsCompilation: no
-Packaged: 2025-01-22 07:24:54 UTC; sammi
+Packaged: 2025-01-27 07:26:52 UTC; sammi
 Author: Seung Hyun Min [aut, cre]
 Repository: CRAN
-Date/Publication: 2025-01-22 07:50:02 UTC
+Date/Publication: 2025-01-27 09:00:08 UTC
