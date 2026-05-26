@@ -850,8 +850,8 @@ create_lavaan_with_fixed_params <- function(model_syntax, params, data, data_typ
 #' @keywords internal
 #' @noRd
 fit_to_lavstring <- function(fit) {
-  if (!inherits(fit, 'lavaan')) {
-    stop("Input must be a lavaan object (class 'lavaan').")
+  if (!inherits(fit, 'lavaan')  && is(fit)[[1]] != "INLAvaan") {
+    stop("Input must be a lavaan or INLAvaan object.")
   }
 
   # Try to extract from call first (preserves original formatting)
@@ -1534,8 +1534,18 @@ lavaan_to_sempaths <- function(fit, data_file = NULL, layout_algorithm = 'tree2'
     unstd <- params1$est  # Unstandardized
     std <- params1$std   # Standardized
 
-    params1$pvalue[is.na(params1$pvalue)] <- 1
-    std_est1$pvalue[is.na(std_est1$pvalue)] <- 1
+    # params1$pvalue[is.na(params1$pvalue)] <- 1
+    # std_est1$pvalue[is.na(std_est1$pvalue)] <- 1
+    if (!"pvalue" %in% names(params1)) {
+      params1$pvalue <- 1
+    } else {
+      params1$pvalue[is.na(params1$pvalue)] <- 1
+    }
+    if (!"pvalue" %in% names(std_est1)) {
+      std_est1$pvalue <- 1
+    } else {
+      std_est1$pvalue[is.na(std_est1$pvalue)] <- 1
+    }
     # pval_idx <- which(params1$pvalue < p_val_alpha)
 
     if (p_val == TRUE) {
@@ -1733,8 +1743,18 @@ lavaan_to_sempaths <- function(fit, data_file = NULL, layout_algorithm = 'tree2'
     std <- round(std_est1$est.std, 2)   # Standardized
 
     # Handle NA p-values
-    params1$pvalue[is.na(params1$pvalue)] <- 1
-    std_est1$pvalue[is.na(std_est1$pvalue)] <- 1
+    # params1$pvalue[is.na(params1$pvalue)] <- 1
+    # std_est1$pvalue[is.na(std_est1$pvalue)] <- 1
+    if (!"pvalue" %in% names(params1)) {
+      params1$pvalue <- 1
+    } else {
+      params1$pvalue[is.na(params1$pvalue)] <- 1
+    }
+    if (!"pvalue" %in% names(std_est1)) {
+      std_est1$pvalue <- 1
+    } else {
+      std_est1$pvalue[is.na(std_est1$pvalue)] <- 1
+    }
 
     # Apply significance stars based on which values are shown
     if (p_val == TRUE) {
@@ -3628,10 +3648,13 @@ get_est_differences <- function(fit,
           filter(dplyr::n() == 2) |>
           summarise(
             comparison = paste(current_group1, "vs", current_group2),
-            p_value = 2 * (1 - pnorm(abs(diff(est)) / sqrt(sum(se^2)))),
+            p_value = if ("se" %in% names(multi_group_params)) {
+              2 * (1 - pnorm(abs(diff(est)) / sqrt(sum(se^2))))
+            } else {
+              NA_real_  # Return NA if se column doesn't exist
+            },
             .groups = 'drop'
           )
-
 
         pairwise_results <- bind_rows(pairwise_results, pair_diffs)
       }
@@ -3962,7 +3985,7 @@ get_comparison_table <- function(fit, alpha = 0.05, group1 = "", group2 = "", se
     distinct(lhs, op, rhs) |>
     mutate(order = row_number())
 
-  # Get unstandardized comparisons with confidence intervals
+  # Get unstandardized comparisons with confidence intervals (if available)
   group_comparisons <- params |>
     filter(group %in% c(group1, group2)) |>
     group_by(lhs, op, rhs) |>
@@ -3970,14 +3993,14 @@ get_comparison_table <- function(fit, alpha = 0.05, group1 = "", group2 = "", se
     summarise(
       group1_est = est[group == group1],
       group2_est = est[group == group2],
-      group1_ci_lower = ci.lower[group == group1],
-      group1_ci_upper = ci.upper[group == group1],
-      group2_ci_lower = ci.lower[group == group2],
-      group2_ci_upper = ci.upper[group == group2],
+      group1_ci_lower = if ("ci.lower" %in% names(params)) ci.lower[group == group1] else NA_real_,
+      group1_ci_upper = if ("ci.upper" %in% names(params)) ci.upper[group == group1] else NA_real_,
+      group2_ci_lower = if ("ci.lower" %in% names(params)) ci.lower[group == group2] else NA_real_,
+      group2_ci_upper = if ("ci.upper" %in% names(params)) ci.upper[group == group2] else NA_real_,
       .groups = 'drop'
     )
 
-  # Get standardized comparisons with confidence intervals
+  # Get standardized comparisons with confidence intervals (if available)
   std_comparisons <- std_solution |>
     filter(group %in% c(group1, group2)) |>
     group_by(lhs, op, rhs) |>
@@ -3985,10 +4008,10 @@ get_comparison_table <- function(fit, alpha = 0.05, group1 = "", group2 = "", se
     summarise(
       group1_std = est.std[group == group1],
       group2_std = est.std[group == group2],
-      group1_std_ci_lower = ci.lower[group == group1],
-      group1_std_ci_upper = ci.upper[group == group1],
-      group2_std_ci_lower = ci.lower[group == group2],
-      group2_std_ci_upper = ci.upper[group == group2],
+      group1_std_ci_lower = if ("ci.lower" %in% names(std_solution)) ci.lower[group == group1] else NA_real_,
+      group1_std_ci_upper = if ("ci.upper" %in% names(std_solution)) ci.upper[group == group1] else NA_real_,
+      group2_std_ci_lower = if ("ci.lower" %in% names(std_solution)) ci.lower[group == group2] else NA_real_,
+      group2_std_ci_upper = if ("ci.upper" %in% names(std_solution)) ci.upper[group == group2] else NA_real_,
       .groups = 'drop'
     )
 
@@ -3997,19 +4020,33 @@ get_comparison_table <- function(fit, alpha = 0.05, group1 = "", group2 = "", se
     left_join(std_comparisons, by = c("lhs", "op", "rhs")) |>
     left_join(group1_order, by = c("lhs", "op", "rhs")) |>
     mutate(
-      comparison_unstd = paste0(round(group1_est, 2),  sep_by , round(group2_est, 2)),
-      comparison_std = paste0(round(group1_std, 2), sep_by, round(group2_std, 2)),
-      # Add confidence intervals
-      confint_unstd = paste0(
-        "[", round(group1_ci_lower, 2), ",", round(group1_ci_upper, 2), "]",
-        sep_by,
-        "[", round(group2_ci_lower, 2), ",", round(group2_ci_upper, 2), "]"
-      ),
-      confint_std = paste0(
-        "[", round(group1_std_ci_lower, 2), ",", round(group1_std_ci_upper, 2), "]",
-        sep_by,
-        "[", round(group2_std_ci_lower, 2), ",", round(group2_std_ci_upper, 2), "]"
-      )
+      comparison_unstd = paste0(round(group1_est, 2), sep_by, round(group2_est, 2)),
+      comparison_std = if (!all(is.na(group1_std)) & !all(is.na(group2_std))) {
+        paste0(round(group1_std, 2), sep_by, round(group2_std, 2))
+      } else {
+        NA_character_
+      },
+      # Add confidence intervals (handle missing values)
+      confint_unstd = if (!all(is.na(group1_ci_lower)) & !all(is.na(group1_ci_upper)) &
+                          !all(is.na(group2_ci_lower)) & !all(is.na(group2_ci_upper))) {
+        paste0(
+          "[", round(group1_ci_lower, 2), ",", round(group1_ci_upper, 2), "]",
+          sep_by,
+          "[", round(group2_ci_lower, 2), ",", round(group2_ci_upper, 2), "]"
+        )
+      } else {
+        NA_character_
+      },
+      confint_std = if (!all(is.na(group1_std_ci_lower)) & !all(is.na(group1_std_ci_upper)) &
+                        !all(is.na(group2_std_ci_lower)) & !all(is.na(group2_std_ci_upper))) {
+        paste0(
+          "[", round(group1_std_ci_lower, 2), ",", round(group1_std_ci_upper, 2), "]",
+          sep_by,
+          "[", round(group2_std_ci_lower, 2), ",", round(group2_std_ci_upper, 2), "]"
+        )
+      } else {
+        NA_character_
+      }
     ) |>
     arrange(order) |>
     select(lhs, op, rhs, comparison_unstd, comparison_std, confint_unstd, confint_std,
