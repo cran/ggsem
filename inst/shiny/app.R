@@ -15940,7 +15940,7 @@ ui <- fluidPage(
                   column(6, numericInput("group_label_angle", "Label Angle:", value = 0, min = -180, max = 180)),
                 ),
                 fluidRow(
-                  column(6, colourInput("group_label_color", "Label Color:", value = "#000000")),
+                  column(6, colourpicker::colourInput("group_label_color", "Label Color:", value = "#000000")),
                   column(6, numericInput("group_label_size", "Label Size:", value = 25, min = 1, max = 20, step = 0.5)),
                 ),
                 fluidRow(
@@ -34686,132 +34686,132 @@ s =~ 0*t1 + 1*t2 + 2*t3 + 3*t4"
 
     if (input$pre_palette == 'Earth Tones') {
       colors <- c('#CD6B5B', '#3E7671', '#887E6D')
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Vibrant Primary') {
       colors <- c('#4E79A7', '#F28E2B', '#59A14F')
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Cool Blues') {
       colors <- c('#2E5A8C', '#6BAED6', '#9ECAE1')
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Warm Contrast') {
       colors <- c('#D1495B', '#EDAE49', '#66A182')
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Jewel Tones') {
       colors <- c('#6A4C93', '#1982C4', '#8AC926')
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Pastel Soft') {
       colors <- c('#FFA5AB', '#B5EAD7', '#C7CEEA')
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Forest Green') {
       colors <- c('#2D5A27', '#6A994E', '#A7C957')
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Sunset Warm') {
       colors <- c('#FF6B35', '#F7C59F', '#2A9D8F')
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     # Additional balanced color palettes
     else if (input$pre_palette == 'Royal Contrast') {
       colors <- c('#2C3E50', '#E74C3C', '#F39C12')  # Dark blue, Red, Orange
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Forest Canopy') {
       colors <- c('#27AE60', '#F1C40F', '#c59ad7')  # Green, Yellow, Purple
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Ocean Sunset') {
       colors <- c('#2980B9', '#E67E22', '#16A085')  # Blue, Orange, Teal
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Berry Garden') {
       colors <- c('#8E44AD', '#C0392B', '#F39C12')  # Purple, Red, Orange
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Slate & Scarlet') {
       colors <- c('#34495E', '#E74C3C', '#1ABC9C')  # Dark blue, Red, Teal
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Autumn Rich') {
       colors <- c('#D35400', '#27AE60', '#F1C40F')  # Orange, Green, Yellow
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Jewel Rich') {
       colors <- c('#16A085', '#8E44AD', '#C0392B')  # Teal, Purple, Red
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
     else if (input$pre_palette == 'Nightfall & Ember') {
       colors <- c('#2C3E50', '#E67E22', '#27AE60')  # Dark blue, Orange, Green
-      updateColourInput(session, "latent_color_input", value = colors[1])
-      updateColourInput(session, "observed_color_input", value = colors[2])
-      updateColourInput(session, "int_color_input", value = colors[3])
-      updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
-      updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
+      colourpicker::updateColourInput(session, "latent_color_input", value = colors[1])
+      colourpicker::updateColourInput(session, "observed_color_input", value = colors[2])
+      colourpicker::updateColourInput(session, "int_color_input", value = colors[3])
+      colourpicker::updateColourInput(session, "text_color_latent", value = get_text_color(colors[1]))
+      colourpicker::updateColourInput(session, "text_color_others", value = get_text_color(colors[2]))
     }
 
     showNotification(

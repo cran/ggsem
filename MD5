@@ -1,4 +1,5 @@
-ced26c3026823ffc30d91d47f74173b7 *DESCRIPTION
+b6a432a58500a1e66dac316b4350a846 *DESCRIPTION
+cdf3983be25b02c5ecd16c24045aeaa9 *LICENSE
 465dc52bcbb050cc09d8711e119d7956 *NAMESPACE
 ebef92f0a35551c417c3319a0e28048c *R/adjust_axis_range.R
 25cbbad171f8ce14948efcb210214678 *R/adjust_axis_space.R
@@ -26,7 +27,7 @@ a57085031c6b2b7eef6351e2b8eac3f3 *README.md
 c4e15df93fdaaf427e13e3e4d4e80b11 *inst/sample_data/DemoGrowth.csv
 9d752e025416d84a192ab383bc027550 *inst/sample_data/HolzingerSwineford1939.csv
 9ebbedd775d7fba5d63b1c0d5e06f9a1 *inst/sample_data/PoliticalDemocracy.csv
-ee88ec9c9e9ecb53261f417355fb69b0 *inst/shiny/app.R
+07b93fd8d3372af6cc368b67c4a8343f *inst/shiny/app.R
 be8407d1ceb3971ea43ce5187b0312c7 *inst/shiny/rsconnect/shinyapps.io/smin95/ggsem.dcf
 40ab3b44139b675cf7e94d7c533a8468 *man/add_group.Rd
 2f257916f07311e8df1668b771ccd1aa *man/adjust_axis_range.Rd
