@@ -2,7 +2,7 @@ Package: ggsem
 Type: Package
 Title: Interactive Structural Equation Modeling (SEM) and Multi-Group
         Path Diagrams
-Version: 1.0.0.1
+Version: 1.0.1
 Authors@R: person(
       given = "Seung Hyun",
       family = "Min",
@@ -15,17 +15,16 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.3.2
 Depends: R (>= 4.1.0)
-Imports: blavaan, DiagrammeRsvg, dplyr, ggplot2 (>= 4.0.0), grDevices,
-        igraph, lavaan (>= 0.6.21), methods, network, purrr, qgraph,
-        RColorBrewer, rlang, Rtsne, semPlot (>= 1.1.7), smplot2,
-        stringr, tidyr, tidySEM, umap, xml2
-Suggests: colourpicker, DT, DiagrammeR, grid, memoise, shiny, shinyjs,
-        svglite
+Imports: blavaan, colourpicker, DiagrammeRsvg, dplyr, DT, ggplot2 (>=
+        4.0.0), grDevices, igraph, lavaan (>= 0.6.21), memoise,
+        methods, network, purrr, qgraph, RColorBrewer, rlang, Rtsne,
+        semPlot (>= 1.1.7), shiny, shinyjs, smplot2, stringr, tidyr,
+        tidySEM, umap, xml2
 URL: https://smin95.github.io/ggsem/
 BugReports: https://github.com/smin95/ggsem/issues/
 Config/Needs/website: rmarkdown
 NeedsCompilation: no
-Packaged: 2026-06-02 01:09:16 UTC; sammi
+Packaged: 2026-10-15 23:53:29 UTC; sammi
 Author: Seung Hyun Min [aut, cre]
 Repository: CRAN
-Date/Publication: 2026-06-02 02:30:02 UTC
+Date/Publication: 2026-10-16 00:20:02 UTC
